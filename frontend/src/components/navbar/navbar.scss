@@ -1,0 +1,716 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow);
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 25px;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    @media (max-width: 1200px) {
+      padding: 10px 20px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 8px 15px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 8px 12px;
+    }
+  }
+
+  // الجزء الأيمن
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      gap: 12px;
+    }
+
+    // زر القائمة (هامبورغر)
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+
+      @media (max-width: 992px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:hover {
+        background: var(--hover-bg);
+      }
+
+      svg {
+        font-size: 24px;
+        color: var(--text-primary);
+
+        @media (max-width: 480px) {
+          font-size: 22px;
+        }
+      }
+    }
+
+    // الشعار
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      @media (max-width: 576px) {
+        gap: 5px;
+      }
+
+      .logo-icon {
+        font-size: 28px;
+        background: linear-gradient(135deg, var(--bg-primary) 0%, #764ba2 100%);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        color: var(--bg-primary);
+
+        @media (max-width: 768px) {
+          width: 35px;
+          height: 35px;
+          font-size: 22px;
+        }
+      }
+
+      .logo-text {
+        font-size: 22px;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--bg-primary) 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 576px) {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  // الجزء الأوسط - البحث
+  .nav-center {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 20px;
+
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background: var(--bg-primary);
+      padding: 15px;
+      box-shadow: 0 2px 15px var(--shadow);
+      z-index: 1001;
+      max-width: 100%;
+      margin: 0;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+
+      &.mobile-show {
+        transform: translateY(0);
+      }
+    }
+
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+
+      .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-size: 20px;
+        pointer-events: none;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 12px 45px 12px 45px;
+        border: 2px solid var(--border-color);
+        border-radius: 30px;
+        font-family: 'Cairo', sans-serif;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        color: var(--text-primary);
+        background: var(--input-bg);
+
+        @media (max-width: 768px) {
+          padding: 14px 50px 14px 50px;
+          border-radius: 15px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 12px 45px 12px 45px;
+          font-size: 13px;
+        }
+
+        &::placeholder {
+          color: var(--text-muted);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: var(--primary-color);
+          box-shadow: 0 0 0 3px (102, 126, 234, 0.1);
+        }
+      }
+
+      .close-search-btn {
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: none;
+        padding: 5px;
+        border-radius: 50%;
+
+        @media (max-width: 768px) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &:hover {
+          background: var(--hover-bg);
+        }
+
+        svg {
+          font-size: 20px;
+          color: var(--text-muted);
+        }
+      }
+    }
+  }
+
+  // الجزء الأيسر
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @media (max-width: 768px) {
+      gap: 5px;
+    }
+
+    @media (max-width: 480px) {
+      gap: 3px;
+    }
+
+    // الأزرار الأيقونية
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width: 768px) {
+        padding: 8px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 6px;
+      }
+
+      &:hover {
+        background: var(--hover-bg);
+        transform: translateY(-2px);
+      }
+
+      svg {
+        font-size: 22px;
+        color: var(--text-secondary);
+
+        @media (max-width: 768px) {
+          font-size: 20px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 18px;
+        }
+      }
+
+      .badge {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background: var(--danger-color);
+        color: white;
+        font-size: 10px;
+        font-weight: 600;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+
+        @media (max-width: 480px) {
+          top: 3px;
+          left: 3px;
+          min-width: 16px;
+          height: 16px;
+          font-size: 9px;
+        }
+      }
+    }
+
+    // زر البحث للهاتف
+    .mobile-search-btn {
+      display: none;
+
+      @media (max-width: 768px) {
+        display: flex;
+      }
+    }
+
+    // زر الوضع المظلم
+    .theme-btn {
+      @media (max-width: 576px) {
+        display: none;
+      }
+    }
+  }
+
+  // قائمة المستخدم
+  .user-wrapper {
+    position: relative;
+
+    .user-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+
+      @media (max-width: 992px) {
+        padding: 6px 8px;
+      }
+
+      &:hover {
+        background: var(--hover-bg);
+      }
+
+      .user-avatar {
+        width: 38px;
+        height: 38px;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width: 768px) {
+          width: 35px;
+          height: 35px;
+        }
+
+        svg, img {
+          width: 22px;
+          height: 22px;
+          color: white;
+
+          @media (max-width: 768px) {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        img {
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .user-info {
+        text-align: right;
+        margin-left: 5px;
+
+        @media (max-width: 992px) {
+          display: none;
+        }
+
+        .user-name {
+          display: block;
+          font-weight: 600;
+          color: var(--text-primary);
+          font-size: 14px;
+        }
+
+        .user-role {
+          display: block;
+          color: var(--text-muted);
+          font-size: 12px;
+        }
+      }
+
+      .dropdown-icon {
+        color: var(--text-muted);
+        font-size: 18px;
+
+        @media (max-width: 992px) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  // القوائم المنسدلة
+  .dropdown-menu {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: var(--bg-primary);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px var(--shadow);
+    min-width: 300px;
+    z-index: 1002;
+    animation: slideDown 0.3s ease;
+    border: 1px solid var(--border-color);
+
+    @media (max-width: 768px) {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      border-radius: 20px 20px 0 0;
+      max-height: 80vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    // رأس القائمة
+    .dropdown-header {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h4 {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .unread-badge {
+        background: var(--primary-light);
+        color: var(--primary-color);
+        padding: 4px 12px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+
+    // جسم القائمة
+    .dropdown-body {
+      max-height: 300px;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
+        border-radius: 10px;
+      }
+    }
+
+    // تذييل القائمة
+    .dropdown-footer {
+      padding: 15px;
+      border-top: 1px solid var(--border-color);
+
+      .view-all-btn {
+        width: 100%;
+        padding: 10px;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+      }
+    }
+  }
+
+  // قائمة الإشعارات
+  .notification-wrapper {
+    position: relative;
+
+    .notification-item {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--hover-bg);
+      }
+
+      &.unread {
+        background: var(--primary-light);
+
+        .notification-content h5 {
+          font-weight: 600;
+        }
+      }
+
+      &.warning {
+        border-right: 3px solid var(--warning-color);
+      }
+
+      &.order {
+        border-right: 3px solid var(--order-color);
+      }
+
+      &.invoice {
+        border-right: 3px solid var(--invoice-color);
+      }
+
+      .notification-content {
+        h5 {
+          margin: 0 0 5px 0;
+          color: var(--text-primary);
+          font-size: 14px;
+        }
+
+        p {
+          margin: 0 0 5px 0;
+          color: var(--text-secondary);
+          font-size: 13px;
+        }
+
+        .notification-time {
+          color: var(--text-muted);
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+  // قائمة المستخدم
+  .user-dropdown {
+    .user-info-header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, var(--primary-color) 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px 15px 0 0;
+
+      .user-avatar-large {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-color) 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+
+        svg, img {
+          width: 30px;
+          height: 30px;
+          color: white;
+        }
+
+        img {
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .user-details {
+        .user-fullname {
+          display: block;
+          font-weight: 700;
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+
+        .user-email {
+          display: block;
+          font-size: 12px;
+          opacity: 0.9;
+          margin-bottom: 5px;
+        }
+
+        .user-role-badge {
+          display: inline-block;
+          background: rgba(255, 255, 255, 0.2);
+          padding: 3px 10px;
+          border-radius: 30px;
+          font-size: 11px;
+        }
+      }
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 8px 0;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+
+      &:hover {
+        background: var(--hover-bg);
+      }
+
+      svg {
+        font-size: 20px;
+        color: var(--text-muted);
+      }
+
+      &.logout-btn {
+        color: var(--danger-color);
+
+        svg {
+          color: var(--danger-color);
+        }
+
+        &:hover {
+          background: var(--danger-light);
+        }
+      }
+    }
+  }
+
+  // طبقة خلفية
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}

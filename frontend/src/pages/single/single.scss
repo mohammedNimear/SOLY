@@ -1,0 +1,225 @@
+
+.single {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 2rem;
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  direction: rtl;
+
+  &.loading,
+  &.error,
+  &.not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #64748b;
+    min-height: 60vh;
+  }
+
+  .single-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    .back-button {
+      background-color: white;
+      color: #334155;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:hover {
+        background-color: #f1f5f9;
+        transform: translateX(4px);
+      }
+    }
+
+    .edit-button {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4);
+      }
+    }
+  }
+
+  .profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      background-color: white;
+    }
+
+    .profile-title {
+      flex: 1;
+
+      h1 {
+        font-size: 2rem;
+        margin: 0 0 0.5rem 0;
+        font-weight: 700;
+      }
+
+      .profile-meta {
+        margin: 0;
+        opacity: 0.9;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    .profile-badge {
+      .badge {
+        background-color: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        padding: 0.5rem 1.5rem;
+        border-radius: 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .section {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin: 0 0 1rem 0;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .section-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .field-item {
+      background-color: #f8fafc;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .field-label {
+        font-size: 0.875rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      .field-value {
+        font-size: 1rem;
+        color: #0f172a;
+        font-weight: 500;
+        word-break: break-word;
+      }
+    }
+
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: white;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+
+      th {
+        text-align: right;
+        background-color: #f1f5f9;
+        color: #334155;
+        font-weight: 600;
+        padding: 0.75rem;
+      }
+
+      td {
+        padding: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+        color: #1e293b;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover td {
+        background-color: #f8fafc;
+      }
+    }
+  }
+
+  /* تجاوب مع الشاشات الصغيرة */
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .profile-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .section-content {
+      grid-template-columns: 1fr;
+    }
+
+    .items-table {
+      font-size: 0.8rem;
+      
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+  }
+}

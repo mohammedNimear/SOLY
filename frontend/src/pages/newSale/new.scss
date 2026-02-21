@@ -1,0 +1,469 @@
+// .new {
+//           text-align: right;
+
+//   width: 100%;
+//   display: flex;
+
+//   .newContainer {
+//     flex: 6;
+
+//     .top,
+//     .bottom {
+//       -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+//       box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+//       padding: 10px;
+//       margin: 20px;
+//       display: flex;
+
+//       h1 {
+//         color: rgb(129, 124, 124);
+//         font-size: 20px;
+//       }
+
+//       .left {
+//         flex: 1;
+//         text-align: center;
+
+//         img {
+//           width: 100px;
+//           height: 100px;
+//           border-radius: 50%;
+//           object-fit: cover;
+//         }
+//       }
+
+//       .right {
+//         flex: 2;
+//         padding: 0px 20px;
+//         text-align: right;
+
+//         @keyframes slideIn {
+//             from {
+//               transform:translateX(100%);
+//               opacity: 0;
+//             }
+//             to {
+//               transform:translateX(100%);
+//               opacity: 1;
+//             }
+//       }
+
+//         .success {
+//             position: fixed;
+//             bottom: 20px;
+//             right: 20px;
+//             background-color: #4caf50;
+//             color: white;
+//             padding: 12px 20px;
+//             border-radius: 8px;
+//             box-shadow: 0 4px 12px rgba(0,0,0, 0.15);
+//             font-size: 16px;
+//             font-weight: 500;
+//             z-index: 9999;
+//             display: flex;
+//             align-items: center;
+//             gap: 10px;
+//             animation: slideIn 0.3 ease;
+//             &::before {
+//               content:\2713;
+//               font-size: 20px;
+//               font-weight: bold;
+//               margin-right: px;
+//             }
+//           }
+
+//           .error {
+//             position: fixed;
+//             bottom: 80px;
+//             right: 20px;
+//             background-color: #f44336;
+//             color: white;
+//             padding: 12px 20px;
+//             border-radius: 8px;
+//             box-shadow: 0 4px 12px rgba(0,0,0, 0.15);
+//             font-size: 16px;
+//             font-weight: 500;
+//             z-index: 9999;
+//             display: flex;
+//             align-items: center;
+//             gap: 10px;
+//             animation: slideIn 0.3 ease;
+
+//             &::before {
+//               content:\2717;
+//               font-size: 20px;
+//               font-weight: bold;
+//               margin-right: 8px;
+//             }
+//           }
+
+          
+
+//           @keyframes slideIn {
+//             from {
+//               transform:translateX(100%);
+//               opacity: 0;
+//             }
+//             to {
+//               transform:translateX(100%);
+//               opacity: 1;
+//             }
+//       }
+
+//         form {
+//           display: flex;
+//           flex-wrap: wrap;
+//           gap: 30px;
+//           justify-content: space-between;
+
+//           .formInput {
+//             width: 40%;
+
+//             label {
+//               display: flex;
+//               align-items: center;
+//               gap: 10px;
+
+//               .icon {
+//                 cursor: pointer;
+//               }
+//             }
+
+//             input {
+//               width: 100%;
+//               padding: 5px;
+//               border: none;
+//               border-bottom: 1px solid gray;
+//             }
+//           }
+
+//           button {
+//             width: 150px;
+//             padding: 10px;
+//             border: none;
+//             background-color: teal;
+//             color: white;
+//             font-weight: bold;
+//             cursor: pointer;
+//             margin-top: 10px;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.newContainer {
+  padding: 20px;
+  background: #f8f9fa;
+  min-height: 100vh;
+
+  .top {
+    margin-bottom: 30px;
+    h1 {
+      color: #2c3e50;
+      font-size: 28px;
+      font-weight: 600;
+      text-align: right;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+      display: inline-block;
+    }
+  }
+}
+
+// بطاقة النموذج
+.bottom {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+
+// تنسيق المدخلات الأساسية
+.formInput {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 14px;
+    text-align: right;
+  }
+
+  input, select, textarea {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+    background: #fff;
+    direction: rtl;
+
+    &:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    &:hover {
+      border-color: #b0b0b0;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+}
+
+// شبكة للحقول الأساسية (صف واحد)
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+// تنسيق جدول المنتجات
+.productsTable {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .productRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    select, input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+
+      &:focus {
+        border-color: #3498db;
+      }
+    }
+
+    span {
+      font-weight: 600;
+      color: #27ae60;
+      text-align: center;
+      background: #e8f5e9;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover:not(:disabled) {
+        background: #c0392b;
+      }
+
+      &:disabled {
+        background: #b0b0b0;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  & > button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    transition: background 0.3s;
+
+    &:hover {
+      background: #219a52;
+    }
+
+    &::before {
+      content: "➕";
+      font-size: 18px;
+    }
+  }
+}
+
+// تنسيق الإجماليات
+.totals {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  color: white;
+  margin: 20px 0;
+
+  p {
+    font-size: 18px;
+    font-weight: 600;
+
+    span {
+      font-size: 24px;
+      margin-right: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 5px 15px;
+      border-radius: 20px;
+    }
+  }
+}
+
+// تنسيق زر الحفظ
+button[type="submit"] {
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 20px;
+  align-self: flex-start;
+
+  &:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+}
+
+// رسائل النجاح والخطأ
+.success, .error {
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: right;
+  animation: slideIn 0.3s ease;
+}
+
+.success {
+  background: #d4edda;
+  color: #155724;
+  border-right: 5px solid #28a745;
+}
+
+.error {
+  background: #f8d7da;
+  color: #721c24;
+  border-right: 5px solid #dc3545;
+}
+
+// حركة الظهور
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// تحسين للشاشات الصغيرة
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .productRow {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .totals {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
+// ```jsx
+// import "./sale.css"; // أو "./sale.scss"
+// ```
+
+// تحسينات إضافية للمكون
+
+// يمكنك أيضًا تحسين تجربة المستخدم بإضافة أيقونات من مكتبة مثل Font Awesome أو React Icons. على سبيل المثال:
+
+// ```bash
+// npm install react-icons
+// ```
+
+// ثم استخدمها في الأزرار:
+
+// ```jsx
+// import { FaPlus, FaTrash, FaSave } from 'react-icons/fa';
+
+// // في زر إضافة منتج
+// <button type="button" onClick={addLine}><FaPlus /> إضافة منتج</button>
+
+// // في زر حذف
+// <button onClick={() => removeLine(index)}><FaTrash /></button>
+// ```
+
+// بهذه التنسيقات، ستحصل على واجهة جذابة واحترافية تسهل إدخال فواتير البيع. جربها وأخبرني إن احتجت أي تعديلات.

@@ -1,0 +1,264 @@
+
+// client/src/pages/home/home.scss
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+.home {
+  display: flex;
+  direction: rtl;
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf2 100%);
+  min-height: 100vh;
+  position: relative;
+
+  .homeContainer {
+    flex: 1;
+    padding: 25px;
+    transition: all 0.3s ease;
+    overflow-x: hidden;
+
+    @media (max-width: 1200px) {
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 15px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 10px;
+    }
+  }
+
+  // قسم البطاقات - شبكة من عمودين
+  .widgets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.5s ease;
+
+    @media (max-width: 768px) {
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 15px;
+    }
+  }
+
+  // قسم الرسوم البيانية
+  .charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      margin-bottom: 25px;
+      gap: 18px;
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 20px;
+      gap: 15px;
+    }
+  }
+
+  // حاوية القائمة
+  .listContainer {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    animation: fadeInUp 0.7s ease;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.08);
+    }
+
+    @media (max-width: 768px) {
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 15px;
+      border-radius: 15px;
+    }
+
+    .listHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+
+      @media (max-width: 576px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+        padding-bottom: 12px;
+      }
+
+      @media (max-width: 480px) {
+        gap: 10px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+      }
+
+      .listTitle {
+        color: #2d3748;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+        position: relative;
+
+        @media (max-width: 768px) {
+          font-size: 18px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 16px;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          right: 0;
+          width: 40px;
+          height: 3px;
+          background: linear-gradient(90deg, #667eea, #764ba2);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+
+          @media (max-width: 480px) {
+            width: 30px;
+            height: 2px;
+          }
+        }
+      }
+
+      .listBadge {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        transition: all 0.3s ease;
+
+        @media (max-width: 768px) {
+          padding: 6px 15px;
+          font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 5px 12px;
+          font-size: 12px;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+      }
+    }
+  }
+
+  // أنيميشنات
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  // تحسينات إضافية للشاشات الصغيرة
+  @media (max-width: 480px) {
+    .homeContainer {
+      padding: 10px;
+    }
+
+    .widgets, .charts {
+      gap: 12px;
+    }
+  }
+
+  // دعم الشاشات الكبيرة جداً
+  @media (min-width: 1600px) {
+    .homeContainer {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    .widgets, .charts {
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .listContainer {
+      padding: 30px;
+    }
+  }
+
+  // تحسين التمرير
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+
+    &:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46a0 100%);
+    }
+  }
+}

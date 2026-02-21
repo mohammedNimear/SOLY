@@ -1,0 +1,135 @@
+// client/src/index.scss
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+:root {
+  // الوضع الفاتح (افتراضي)
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  
+  --primary-color: #667eea;
+  --primary-hover: #5a67d8;
+  --primary-light: #ebf4ff;
+  
+  --success-color: #48bb78;
+  --warning-color: #ed8936;
+  --danger-color: #f56565;
+  --danger-light: rgba(245, 101, 101, 0.1);
+  
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --hover-bg: #f7fafc;
+}
+
+// الوضع المظلم
+body.dark-mode {
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-tertiary: #4a5568;
+  
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #a0aec0;
+  
+  --border-color: #4a5568;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  --primary-color: #818cf8;
+  --primary-hover: #a5b4fc;
+  --primary-light: #2d3748;
+  
+  --card-bg: #2d3748;
+  --input-bg: #4a5568;
+  --hover-bg: #4a5568;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* يمنع ظهور شريط تمرير عام */
+  font-family: 'Cairo', sans-serif;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.navbar {
+  flex-shrink: 0; /* يمنع النافبار من الانكماش */
+  height: 60px; /* يمكن تعديله حسب ارتفاع النافبار الفعلي */
+  background: var(--bg-primary);
+  box-shadow: var(--shadow);
+  z-index: 100;
+}
+
+.container {
+  display: flex;
+  flex: 1; /* يأخذ باقي الارتفاع */
+  overflow: hidden; /* يمنع التمرير الخارجي */
+}
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  height: 100%;
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-color);
+  transition: width 0.3s ease;
+  overflow-y: auto; /* تمرير داخلي إذا كبر المحتوى */
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.contentContainer {
+  flex: 1;
+  overflow-y: auto; /* تمرير المحتوى الرئيسي */
+  padding: 20px;
+  background: var(--bg-secondary);
+}
+
+/* تحسين ظهور المحتوى في الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .contentContainer {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentContainer {
+    padding: 10px;
+  }
+}

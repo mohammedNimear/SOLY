@@ -1,0 +1,472 @@
+.datatable {
+  height: 600px;
+  padding: 20px;
+  
+  .datatableTitle{
+    width: 100%;
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .link{
+      text-decoration: none;
+      color: green;
+      font-size: 16px;
+      font-weight: 400;
+      border: 1px solid green;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+}
+  }
+
+  .cellWithImg {
+    display: flex;
+    align-items: center;
+
+    .cellImg {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+  }
+
+  .cellWithStatus {
+    padding: 5px;
+    border-radius: 5px;
+
+    &.active {
+      background-color: rgba(0, 128, 0, 0.05);
+      color: green;
+    }
+    &.pending {
+      background-color: rgba(255, 217, 0, 0.05);
+      color: goldenrod;
+    }
+    &.passive {
+      background-color: rgba(255, 0, 0, 0.05);
+      color: crimson;
+    }
+  }
+
+  .cellAction {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .viewButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: darkblue;
+      border: 1px dotted rgba(0, 0, 139, 0.596);
+      cursor: pointer;
+    }
+    
+    .deleteButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: crimson;
+      border: 1px dotted rgba(220, 20, 60, 0.6);
+      cursor: pointer;
+    }
+  }
+}
+
+
+
+
+// ...........................
+
+
+// @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+// .datatable {
+//   padding: 20px;
+//   font-family: 'Cairo', sans-serif;
+//   direction: rtl;
+//   background: var(--bg-secondary);
+//   min-height: 100vh;
+
+//   @media (max-width: 768px) {
+//     padding: 15px;
+//   }
+
+//   @media (max-width: 480px) {
+//     padding: 10px;
+//   }
+
+//   // رأس الجدول
+//   .datatableHeader {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 25px;
+//     flex-wrap: wrap;
+//     gap: 15px;
+
+//     @media (max-width: 576px) {
+//       flex-direction: column;
+//       align-items: stretch;
+//     }
+
+//     .datatableTitle {
+//       color: var(--text-primary);
+//       font-size: 24px;
+//       font-weight: 700;
+//       margin: 0;
+//       position: relative;
+
+//       @media (max-width: 768px) {
+//         font-size: 22px;
+//       }
+
+//       @media (max-width: 480px) {
+//         font-size: 20px;
+//       }
+
+//       &::after {
+//         content: '';
+//         position: absolute;
+//         bottom: -5px;
+//         right: 0;
+//         width: 50px;
+//         height: 3px;
+//         background: linear-gradient(90deg, var(--primary-color), #764ba2);
+//         border-radius: 2px;
+//       }
+//     }
+
+//     .headerActions {
+//       display: flex;
+//       gap: 10px;
+//       flex-wrap: wrap;
+
+//       @media (max-width: 576px) {
+//         width: 100%;
+//       }
+
+//       .deleteSelectedBtn {
+//         padding: 10px 20px;
+//         background: var(--danger-color);
+//         color: white;
+//         border: none;
+//         border-radius: 10px;
+//         font-size: 14px;
+//         font-weight: 500;
+//         cursor: pointer;
+//         transition: all 0.3s ease;
+
+//         @media (max-width: 576px) {
+//           flex: 1;
+//         }
+
+//         &:hover {
+//           background: #e53e3e;
+//           transform: translateY(-2px);
+//         }
+//       }
+
+//       .addNewBtn {
+//         padding: 10px 25px;
+//         background: linear-gradient(135deg, var(--primary-color), #764ba2);
+//         color: white;
+//         text-decoration: none;
+//         border-radius: 10px;
+//         font-size: 14px;
+//         font-weight: 500;
+//         transition: all 0.3s ease;
+//         display: inline-flex;
+//         align-items: center;
+//         gap: 5px;
+
+//         @media (max-width: 576px) {
+//           flex: 1;
+//           justify-content: center;
+//         }
+
+//         &:hover {
+//           transform: translateY(-2px);
+//           box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+//         }
+//       }
+//     }
+//   }
+
+//   // حاوية الجدول للشاشات الكبيرة
+//   .tableContainer {
+//     background: var(--bg-primary);
+//     border-radius: 15px;
+//     padding: 20px;
+//     box-shadow: var(--shadow);
+//     border: 1px solid var(--border-color);
+//     overflow-x: auto;
+
+//     @media (max-width: 768px) {
+//       padding: 15px;
+//     }
+
+//     // تنسيق DataGrid
+//     .datagrid {
+//       border: none;
+//       min-width: 800px; // يضمن ظهور شريط التمرير على الشاشات الصغيرة
+
+//       .MuiDataGrid-columnHeaders {
+//         background: var(--bg-secondary);
+//         color: var(--text-primary);
+//         font-weight: 700;
+//         font-size: 14px;
+//         border-bottom: 2px solid var(--border-color);
+//       }
+
+//       .MuiDataGrid-cell {
+//         color: var(--text-secondary);
+//         border-bottom: 1px solid var(--border-color);
+//       }
+
+//       .MuiDataGrid-footerContainer {
+//         border-top: 2px solid var(--border-color);
+//       }
+
+//       .MuiCheckbox-root {
+//         color: var(--text-muted);
+        
+//         &.Mui-checked {
+//           color: var(--primary-color);
+//         }
+//       }
+
+//       // أزرار الإجراءات في الجدول
+//       .cellAction {
+//         display: flex;
+//         gap: 8px;
+
+//         .viewButton,
+//         .editButton,
+//         .deleteButton {
+//           padding: 5px 10px;
+//           border-radius: 5px;
+//           font-size: 12px;
+//           font-weight: 500;
+//           cursor: pointer;
+//           transition: all 0.3s ease;
+//           text-decoration: none;
+//           border: none;
+//         }
+
+//         .viewButton {
+//           background: var(--primary-light);
+//           color: var(--primary-color);
+          
+//           &:hover {
+//             background: var(--primary-color);
+//             color: white;
+//           }
+//         }
+
+//         .editButton {
+//           background: #ebf4ff;
+//           color: #3182ce;
+          
+//           &:hover {
+//             background: #3182ce;
+//             color: white;
+//           }
+//         }
+
+//         .deleteButton {
+//           background: #fff5f5;
+//           color: var(--danger-color);
+          
+//           &:hover {
+//             background: var(--danger-color);
+//             color: white;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   // عرض البطاقات للهاتف
+//   .mobile-cards {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 15px;
+
+//     .mobile-card {
+//       background: var(--bg-primary);
+//       border-radius: 15px;
+//       padding: 15px;
+//       box-shadow: var(--shadow);
+//       border: 1px solid var(--border-color);
+//       animation: slideIn 0.3s ease;
+
+//       @keyframes slideIn {
+//         from {
+//           opacity: 0;
+//           transform: translateY(20px);
+//         }
+//         to {
+//           opacity: 1;
+//           transform: translateY(0);
+//         }
+//       }
+
+//       .card-header {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         margin-bottom: 15px;
+//         padding-bottom: 10px;
+//         border-bottom: 1px solid var(--border-color);
+
+//         .card-title {
+//           color: var(--text-primary);
+//           font-size: 16px;
+//           font-weight: 700;
+//           margin: 0;
+//         }
+
+//         .card-actions {
+//           display: flex;
+//           gap: 10px;
+
+//           button, a {
+//             background: none;
+//             border: none;
+//             font-size: 18px;
+//             cursor: pointer;
+//             padding: 5px;
+//             border-radius: 5px;
+//             transition: all 0.3s ease;
+//             text-decoration: none;
+
+//             &:hover {
+//               background: var(--hover-bg);
+//               transform: scale(1.1);
+//             }
+//           }
+
+//           .view-icon { color: var(--primary-color); }
+//           .edit-icon { color: #3182ce; }
+//           .delete-icon { color: var(--danger-color); }
+//         }
+//       }
+
+//       .card-content {
+//         .card-row {
+//           display: flex;
+//           justify-content: space-between;
+//           padding: 8px 0;
+//           border-bottom: 1px dashed var(--border-color);
+
+//           &:last-child {
+//             border-bottom: none;
+//           }
+
+//           .card-label {
+//             color: var(--text-muted);
+//             font-size: 13px;
+//             font-weight: 500;
+//           }
+
+//           .card-value {
+//             color: var(--text-primary);
+//             font-size: 14px;
+//             font-weight: 600;
+//             text-align: left;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   // حالات التحميل
+//   .loadingContainer {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     padding: 50px;
+//     background: var(--bg-primary);
+//     border-radius: 15px;
+//     box-shadow: var(--shadow);
+
+//     .spinner {
+//       width: 50px;
+//       height: 50px;
+//       border: 4px solid var(--border-color);
+//       border-top-color: var(--primary-color);
+//       border-radius: 50%;
+//       animation: spin 1s linear infinite;
+//       margin-bottom: 15px;
+//     }
+
+//     p {
+//       color: var(--text-muted);
+//       font-size: 14px;
+//     }
+
+//     @keyframes spin {
+//       to { transform: rotate(360deg); }
+//     }
+//   }
+
+//   // حالة عدم وجود بيانات
+//   .emptyState {
+//     text-align: center;
+//     padding: 60px 20px;
+//     background: var(--bg-primary);
+//     border-radius: 15px;
+//     box-shadow: var(--shadow);
+
+//     p {
+//       color: var(--text-muted);
+//       font-size: 16px;
+//       margin-bottom: 20px;
+//     }
+
+//     .addFirstBtn {
+//       display: inline-block;
+//       padding: 12px 30px;
+//       background: linear-gradient(135deg, var(--primary-color), #764ba2);
+//       color: white;
+//       text-decoration: none;
+//       border-radius: 10px;
+//       font-weight: 500;
+//       transition: all 0.3s ease;
+
+//       &:hover {
+//         transform: translateY(-2px);
+//         box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+//       }
+//     }
+//   }
+// }
+
+// // تنسيقات إضافية لشريط التمرير
+// ::-webkit-scrollbar {
+//   width: 8px;
+//   height: 8px;
+// }
+
+// ::-webkit-scrollbar-track {
+//   background: var(--bg-secondary);
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background: var(--text-muted);
+//   border-radius: 10px;
+
+//   &:hover {
+//     background: var(--primary-color);
+//   }
+// }
