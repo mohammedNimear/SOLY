@@ -1,0 +1,4 @@
+PORT=8800
+MONGO_URI="mongodb+srv://mhn:1612@cluster0.cp42syx.mongodb.net/?appName=Cluster0"
+FRONTEND_URL = http://localhost:3000
+JWT = 16121988Jr*
