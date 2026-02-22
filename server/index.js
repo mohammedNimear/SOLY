@@ -13,7 +13,13 @@ import customersRoute from './routes/customers.js'
 import cookieParser from 'cookie-parser';
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin:[
+    'https://soly-trading.netlify.app',
+    'http://localhost:3000'
+  ],
+  credentials:true,
+}));
 app.use(express.json());
 dotenv.config();
 // using json in app
