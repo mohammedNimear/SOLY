@@ -10,7 +10,9 @@ const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(url);
+        const baseURL = process.env.REACT_APP_API_URL || "";
+        const fullURL = url.startsWith("http") ? url : `${baseURL}${url}`;
+        const res = await axios.get(fullURL);
         setData(res.data);
       } catch (err) {
         setError(err);
@@ -23,7 +25,10 @@ const useFetch = (url) => {
   const reFetch = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(url);
+      
+      const baseURL = process.env.REACT_APP_API_URL || "";
+      const fullURL = url.startsWith("http") ? url : `${baseURL}${url}`;
+      const res = await axios.get(fullURL);
       setData(res.data);
     } catch (err) {
       setError(err);
