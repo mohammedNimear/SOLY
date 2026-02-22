@@ -14,10 +14,12 @@ const useFetch = (url) => {
         const fullURL = url.startsWith("http") ? url : `${baseURL}${url}`;
         const res = await axios.get(fullURL);
         setData(res.data);
+        setError(false);
       } catch (err) {
-        setError(err);
+        setError(err.message || "حصل خطأ أثناء جلب البيانات");
+      }finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     fetchData();
   }, [url]);
@@ -31,9 +33,11 @@ const useFetch = (url) => {
       const res = await axios.get(fullURL);
       setData(res.data);
     } catch (err) {
-      setError(err);
+      setError(err.message || "حصل خطأ أثناء جلب البيانات");
     }
-    setLoading(false);
+      finally {
+        setLoading(false);
+      }
   };
 
   return { data, loading, error, reFetch };
