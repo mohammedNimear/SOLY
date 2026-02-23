@@ -36,6 +36,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Single from './pages/single/Single';
 import New from './pages/new/New';
+import NewSale from './pages/newSale/New';
 
 // ========== التخطيط الرئيسي مع Dark Mode ==========
 const Layout = () => {
@@ -112,7 +113,7 @@ const router = createBrowserRouter([
         path: "sales",
         children: [
           { index: true, element: <List columns={saleColumns} title="المبيعات" /> },
-          { path: "new", element: <New inputs={saleInputs} title="إضافة فاتورة" apiEndpoint="/sales" /> },
+          { path: "new", element: <NewSale inputs={saleInputs} title="إضافة فاتورة" apiEndpoint="/sales" /> },
           { path: ":id", element: <Single /> },
           { path: ":id/edit", element: <Update inputs={saleInputs} title="تعديل الفاتورة" /> },
         ],

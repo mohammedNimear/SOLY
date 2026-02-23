@@ -71,8 +71,8 @@ const New = ({ inputs, title, apiEndpoint }) => {
             
             <form>
 
-              {inputs.map((input) => {
-                if (input.id === "store") {
+              {inputs?.map((input) => {
+                if (input?.id === "store") {
                   
                   return (
                     <div className="formInput" key={input.id}>
