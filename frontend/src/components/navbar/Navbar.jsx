@@ -76,20 +76,17 @@ const Navbar = ({ toggleSidebar }) => {
       <div className="navbar-container">
         
         {/* الجزء الأيمن - زر القائمة والشعار */}
-        <div className="nav-left">
-          <button 
-            className="menu-btn" 
-            onClick={toggleSidebar}
-            aria-label="القائمة"
-          >
-            <MenuOutlinedIcon />
-          </button>
-          
-          <Link to="/" className="logo">
-            <span className="logo-icon">🛒</span>
-            <span className="logo-text">سولي</span>
-          </Link>
-        </div>
+        
+<div className="nav-left">
+  <Link to="/" className="logo-link">
+    <img src={logo} alt="شعار المتجر" className="logo-image" />
+  </Link>
+  {/* باقي العناصر مثل زر القائمة إذا أردت */}
+  <button className="menu-button">
+    <MenuOutlinedIcon />
+  </button>
+</div>
+
 
         {/* الجزء الأوسط - البحث */}
         <div className={`nav-center ${showSearch ? 'mobile-show' : ''}`}>
@@ -97,7 +94,7 @@ const Navbar = ({ toggleSidebar }) => {
             <SearchOutlinedIcon className="search-icon" />
             <input
               type="text"
-              placeholder="بحث في المتجر..."
+              placeholder="بحث ..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="search-input"

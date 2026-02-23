@@ -24,7 +24,7 @@ const Home = () => {
         {/* قسم الرسوم البيانية */}
         <div className="charts">
           <Featured />
-          <Chart title="آخر 6 أشهر" />
+          <Chart title="الحركات المالية" />
         </div>
 
         {/* قائمة المنتجات الأكثر مبيعاً */}

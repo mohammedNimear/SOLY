@@ -1,102 +1,462 @@
 
-// client/src/components/sidebar/sidebar.scss
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+// // client/src/components/sidebar/sidebar.scss
+// @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+
+// .sidebar {
+//   width: 280px;
+//   background: linear-gradient(180deg, #ffffff 0%, var(--bg-secondary) 100%);
+//   height: 100%
+//   ;
+//   top: 0;
+//   right: 0;
+//   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
+//   display: flex;
+//   flex-direction: column;
+//   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+//   border-left: 1px solid rgba(102, 126, 234, 0.1);
+//   font-family: 'Cairo', sans-serif;
+//   direction: rtl;
+//   z-index: 1000;
+//    overflow-y: auto; /* تمرير داخلي */
+
+//   // حالة التصغير
+//   &.collapsed {
+//     width: 80px;
+
+//     .menu-text,
+//     .brand-name,
+//     .user-info,
+//     .menu-title,
+//     .copyright,
+//     .version {
+//       display: none;
+//     }
+
+//     .menu-icon {
+//       margin-left: 0;
+//     }
+
+//     .user-profile {
+//       padding: 15px 0;
+//       justify-content: center;
+//     }
+//   }
+
+//   // للهاتف
+//   @media (max-width: 992px) {
+//     position: fixed;
+//     right: -100%;
+//     top: 0;
+//     z-index: 1002;
+//     box-shadow: none;
+
+//     &.open {
+//       right: 0;
+//       box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
+//     }
+//   }
+
+//   // رأس السايد بار
+//   &-header {
+//     padding: 20px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+
+//     @media (max-width: 992px) {
+//       padding: 15px;
+//     }
+
+//     .logo-container {
+//       display: flex;
+//       align-items: center;
+//       gap: 12px;
+
+//       .logo {
+//         width: 40px;
+//         height: 40px;
+//         border-radius: 12px;
+//         background: linear-gradient(135deg, #d4d6dc 0%, #cec7d5 100%);
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         color: white;
+//         font-weight: bold;
+//         font-size: 20px;
+//       }
+
+//       .brand-name {
+//         font-size: 20px;
+//         font-weight: 700;
+//         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//         -webkit-background-clip: text;
+//         -webkit-text-fill-color: transparent;
+//         background-clip: text;
+
+//         @media (max-width: 992px) {
+//           font-size: 18px;
+//         }
+//       }
+//     }
+
+//     .collapse-btn {
+//       background: none;
+//       border: none;
+//       cursor: pointer;
+//       color: #667eea;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       padding: 5px;
+//       border-radius: 8px;
+//       transition: all 0.3s ease;
+
+//       @media (max-width: 992px) {
+//         display: none;
+//       }
+
+//       &:hover {
+//         background: rgba(102, 126, 234, 0.1);
+//         transform: scale(1.1);
+//       }
+
+//       svg {
+//         font-size: 24px;
+//       }
+//     }
+
+//     .close-btn {
+//       display: none;
+//       background: none;
+//       border: none;
+//       font-size: 24px;
+//       color: #718096;
+//       cursor: pointer;
+//       padding: 5px;
+//       border-radius: 8px;
+
+//       @media (max-width: 992px) {
+//         display: flex;
+//       }
+
+//       &:hover {
+//         background: rgba(0, 0, 0, 0.05);
+//       }
+//     }
+//   }
+
+//   // الملف الشخصي
+//   .user-profile {
+//     padding: 20px;
+//     display: flex;
+//     align-items: center;
+//     gap: 15px;
+//     border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+
+//     @media (max-width: 992px) {
+//       padding: 15px;
+//     }
+
+//     .avatar {
+//       width: 50px;
+//       height: 50px;
+//       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//       border-radius: 15px;
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       color: white;
+//       font-size: 28px;
+//       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+
+//       @media (max-width: 992px) {
+//         width: 45px;
+//         height: 45px;
+//         font-size: 24px;
+//       }
+//     }
+
+//     .user-info {
+//       display: flex;
+//       flex-direction: column;
+
+//       .user-name {
+//         font-weight: 700;
+//         color: #2d3748;
+//         font-size: 16px;
+//       }
+
+//       .user-role {
+//         color: #718096;
+//         font-size: 13px;
+//       }
+//     }
+//   }
+
+//   // القائمة
+//   &-menu {
+//     flex: 1;
+//     padding: 20px;
+//     overflow-y: auto;
+//     overflow-x: hidden;
+
+//     @media (max-width: 992px) {
+//       padding: 15px;
+//     }
+
+//     &::-webkit-scrollbar {
+//       width: 5px;
+//     }
+
+//     &::-webkit-scrollbar-track {
+//       background: #f1f1f1;
+//     }
+
+//     &::-webkit-scrollbar-thumb {
+//       background: #cbd5e0;
+//       border-radius: 10px;
+
+//       &:hover {
+//         background: #a0aec0;
+//       }
+//     }
+//   }
+
+//   // عنوان القسم
+//   .menu-title {
+//     color: #a0aec0;
+//     font-size: 12px;
+//     font-weight: 600;
+//     margin: 20px 0 10px 0;
+//     padding-right: 15px;
+//     letter-spacing: 0.5px;
+//   }
+
+//   // عنصر القائمة
+//   .menu-item {
+//     display: flex;
+//     align-items: center;
+//     gap: 12px;
+//     padding: 12px 15px;
+//     margin-bottom: 5px;
+//     border-radius: 15px;
+//     color: #4a5568;
+//     text-decoration: none;
+//     transition: all 0.3s ease;
+//     position: relative;
+//     overflow: hidden;
+
+//     @media (max-width: 992px) {
+//       padding: 10px 12px;
+//     }
+
+//     // تأثير الخلفية المتحركة
+//     &::before {
+//       content: '';
+//       position: absolute;
+//       left: 0;
+//       top: 0;
+//       height: 100%;
+//       width: 0;
+//       background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+//       transition: width 0.3s ease;
+//     }
+
+//     &:hover {
+//       background: rgba(102, 126, 234, 0.05);
+      
+//       &::before {
+//         width: 100%;
+//       }
+
+//       .menu-icon {
+//         transform: scale(1.1);
+//         color: #667eea;
+//       }
+//     }
+
+//     // العنصر النشط
+//     &.active {
+//       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//       color: white;
+//       box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+
+//       .menu-icon {
+//         color: white;
+//       }
+
+//       .active-indicator {
+//         position: absolute;
+//         right: -20px;
+//         width: 4px;
+//         height: 70%;
+//         background: white;
+//         border-radius: 0 4px 4px 0;
+//       }
+
+//       &::before {
+//         display: none;
+//       }
+//     }
+
+//     .menu-icon {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       transition: all 0.3s ease;
+//       min-width: 24px;
+
+//       svg {
+//         font-size: 22px;
+//       }
+//     }
+
+//     .menu-text {
+//       font-weight: 500;
+//       font-size: 15px;
+//       white-space: nowrap;
+//     }
+//   }
+
+//   // تذييل السايد بار
+//   &-footer {
+//     padding: 20px;
+//     border-top: 2px solid rgba(102, 126, 234, 0.1);
+
+//     @media (max-width: 992px) {
+//       padding: 15px;
+//     }
+
+//     .menu-item {
+//       margin-bottom: 0;
+
+//       &.active {
+//         background: transparent;
+//         color: #f56565;
+//         box-shadow: none;
+
+//         .menu-icon {
+//           color: #f56565;
+//         }
+//       }
+
+//       &:last-child {
+//         color: #f56565;
+
+//         &:hover {
+//           background: rgba(245, 101, 101, 0.1);
+//         }
+//       }
+//     }
+//   }
+
+//   // العلامة التجارية في الأسفل
+//   &-footer-brand {
+//     padding: 15px 20px;
+//     text-align: center;
+//     border-top: 1px solid rgba(102, 126, 234, 0.1);
+
+//     .copyright {
+//       display: block;
+//       color: #a0aec0;
+//       font-size: 12px;
+//       margin-bottom: 5px;
+//     }
+
+//     .version {
+//       color: #cbd5e0;
+//       font-size: 11px;
+//     }
+//   }
+
+//   // طبقة خلفية للهاتف
+//   &-overlay {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background: rgba(0, 0, 0, 0.5);
+//     z-index: 1001;
+//     animation: fadeIn 0.3s ease;
+//   }
+
+//   @keyframes fadeIn {
+//     from {
+//       opacity: 0;
+//     }
+//     to {
+//       opacity: 1;
+//     }
+//   }
+// }
+
+// // تحسينات للشاشات الصغيرة
+// @media (max-width: 576px) {
+//   .sidebar {
+//     width: 100% !important;
+    
+//     &.collapsed {
+//       width: 100% !important;
+//     }
+//   }
+// }
+
+
+
+
+/* components/sidebar/sidebar.scss */
 
 .sidebar {
-  width: 280px;
-  background: linear-gradient(180deg, #ffffff 0%, var(--bg-secondary) 100%);
-  height: 100%
-  ;
-  top: 0;
+  width: 260px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
   right: 0;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
+  top: 0;
+  z-index: 1000;
+  transition: width 0.3s ease, transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-left: 1px solid rgba(102, 126, 234, 0.1);
-  font-family: 'Cairo', sans-serif;
-  direction: rtl;
-  z-index: 1000;
-   overflow-y: auto; /* تمرير داخلي */
 
-  // حالة التصغير
+  // الحالة المطوية
   &.collapsed {
     width: 80px;
-
-    .menu-text,
-    .brand-name,
-    .user-info,
-    .menu-title,
-    .copyright,
-    .version {
-      display: none;
-    }
-
-    .menu-icon {
-      margin-left: 0;
-    }
-
-    .user-profile {
-      padding: 15px 0;
-      justify-content: center;
-    }
   }
 
-  // للهاتف
+  // للموبايل
   @media (max-width: 992px) {
-    position: fixed;
-    right: -100%;
-    top: 0;
-    z-index: 1002;
-    box-shadow: none;
-
+    transform: translateX(100%);
     &.open {
-      right: 0;
-      box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
+      transform: translateX(0);
     }
   }
 
-  // رأس السايد بار
-  &-header {
-    padding: 20px;
+  // ===== رأس الشريط =====
+  .sidebar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid rgba(102, 126, 234, 0.1);
-
-    @media (max-width: 992px) {
-      padding: 15px;
-    }
+    padding: 16px;
+    border-bottom: 1px solid #eee;
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
 
-      .logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #d4d6dc 0%, #cec7d5 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
+      .logo-icon {
+        font-size: 28px;
+        color: #333;
       }
 
       .brand-name {
         font-size: 20px;
-        font-weight: 700;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-
-        @media (max-width: 992px) {
-          font-size: 18px;
-        }
+        font-weight: bold;
+        color: #333;
+        white-space: nowrap;
       }
     }
 
@@ -104,301 +464,200 @@
       background: none;
       border: none;
       cursor: pointer;
-      color: #667eea;
+      color: #666;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-
-      @media (max-width: 992px) {
-        display: none;
-      }
+      padding: 4px;
+      border-radius: 4px;
 
       &:hover {
-        background: rgba(102, 126, 234, 0.1);
-        transform: scale(1.1);
-      }
-
-      svg {
-        font-size: 24px;
+        background-color: #f0f0f0;
       }
     }
 
     .close-btn {
-      display: none;
+      display: none; // يظهر فقط في الموبايل
       background: none;
       border: none;
-      font-size: 24px;
-      color: #718096;
+      font-size: 20px;
       cursor: pointer;
-      padding: 5px;
-      border-radius: 8px;
-
-      @media (max-width: 992px) {
-        display: flex;
-      }
-
-      &:hover {
-        background: rgba(0, 0, 0, 0.05);
-      }
+      color: #666;
     }
   }
 
-  // الملف الشخصي
+  // ===== الملف الشخصي المصغر =====
   .user-profile {
-    padding: 20px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    border-bottom: 2px solid rgba(102, 126, 234, 0.1);
-
-    @media (max-width: 992px) {
-      padding: 15px;
-    }
+    padding: 16px;
+    gap: 12px;
+    border-bottom: 1px solid #eee;
 
     .avatar {
-      width: 50px;
-      height: 50px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 15px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #f0f0f0;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 28px;
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-
-      @media (max-width: 992px) {
-        width: 45px;
-        height: 45px;
-        font-size: 24px;
-      }
+      color: #555;
+      font-size: 24px;
     }
 
     .user-info {
-      display: flex;
-      flex-direction: column;
-
       .user-name {
-        font-weight: 700;
-        color: #2d3748;
-        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        font-size: 14px;
       }
-
       .user-role {
-        color: #718096;
-        font-size: 13px;
+        font-size: 12px;
+        color: #777;
       }
     }
   }
 
-  // القائمة
-  &-menu {
+  // ===== القائمة الرئيسية =====
+  .sidebar-menu {
     flex: 1;
-    padding: 20px;
     overflow-y: auto;
-    overflow-x: hidden;
+    padding: 8px 0;
 
-    @media (max-width: 992px) {
-      padding: 15px;
-    }
-
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #cbd5e0;
-      border-radius: 10px;
-
-      &:hover {
-        background: #a0aec0;
-      }
-    }
-  }
-
-  // عنوان القسم
-  .menu-title {
-    color: #a0aec0;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 20px 0 10px 0;
-    padding-right: 15px;
-    letter-spacing: 0.5px;
-  }
-
-  // عنصر القائمة
-  .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
-    margin-bottom: 5px;
-    border-radius: 15px;
-    color: #4a5568;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-
-    @media (max-width: 992px) {
-      padding: 10px 12px;
-    }
-
-    // تأثير الخلفية المتحركة
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
-      transition: width 0.3s ease;
-    }
-
-    &:hover {
-      background: rgba(102, 126, 234, 0.05);
-      
-      &::before {
-        width: 100%;
+    .menu-section {
+      .menu-title {
+        font-size: 12px;
+        color: #999;
+        padding: 8px 16px;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
-      .menu-icon {
-        transform: scale(1.1);
-        color: #667eea;
+      .menu-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
-    }
-
-    // العنصر النشط
-    &.active {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-
-      .menu-icon {
-        color: white;
-      }
-
-      .active-indicator {
-        position: absolute;
-        right: -20px;
-        width: 4px;
-        height: 70%;
-        background: white;
-        border-radius: 0 4px 4px 0;
-      }
-
-      &::before {
-        display: none;
-      }
-    }
-
-    .menu-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      min-width: 24px;
-
-      svg {
-        font-size: 22px;
-      }
-    }
-
-    .menu-text {
-      font-weight: 500;
-      font-size: 15px;
-      white-space: nowrap;
-    }
-  }
-
-  // تذييل السايد بار
-  &-footer {
-    padding: 20px;
-    border-top: 2px solid rgba(102, 126, 234, 0.1);
-
-    @media (max-width: 992px) {
-      padding: 15px;
     }
 
     .menu-item {
-      margin-bottom: 0;
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      color: #555;
+      text-decoration: none;
+      transition: background 0.2s;
+      position: relative;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: right;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
 
       &.active {
-        background: transparent;
-        color: #f56565;
-        box-shadow: none;
-
+        background-color: #e3f2fd;
+        color: #1976d2;
         .menu-icon {
-          color: #f56565;
+          color: #1976d2;
         }
       }
 
-      &:last-child {
-        color: #f56565;
+      .menu-icon {
+        margin-left: 12px;
+        color: #777;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+      }
 
-        &:hover {
-          background: rgba(245, 101, 101, 0.1);
-        }
+      .menu-text {
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .active-indicator {
+        width: 4px;
+        height: 20px;
+        background-color: #1976d2;
+        position: absolute;
+        right: 0;
+        border-radius: 4px 0 0 4px;
       }
     }
   }
 
-  // العلامة التجارية في الأسفل
-  &-footer-brand {
-    padding: 15px 20px;
-    text-align: center;
-    border-top: 1px solid rgba(102, 126, 234, 0.1);
+  // ===== القائمة السفلية (إعدادات + تسجيل خروج + حقوق النشر) =====
+  .sidebar-bottom {
+    border-top: 1px solid #eee;
+    padding: 8px 0;
 
-    .copyright {
-      display: block;
-      color: #a0aec0;
-      font-size: 12px;
-      margin-bottom: 5px;
+    .logout-btn {
+      color: #d32f2f;
+      .menu-icon {
+        color: #d32f2f;
+      }
+      &:hover {
+        background-color: #ffebee;
+      }
     }
 
-    .version {
-      color: #cbd5e0;
-      font-size: 11px;
-    }
-  }
+    .sidebar-footer {
+      padding: 16px;
+      text-align: center;
 
-  // طبقة خلفية للهاتف
-  &-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1001;
-    animation: fadeIn 0.3s ease;
-  }
+      .sidebar-footer-brand {
+        font-size: 12px;
+        color: #999;
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
+        .copyright {
+          display: block;
+          margin-bottom: 4px;
+        }
+        .version {
+          display: block;
+          font-weight: 500;
+        }
+      }
     }
   }
 }
 
-// تحسينات للشاشات الصغيرة
-@media (max-width: 576px) {
-  .sidebar {
-    width: 100% !important;
-    
-    &.collapsed {
-      width: 100% !important;
-    }
+// طبقة خلفية للموبايل
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+
+  @media (max-width: 992px) {
+    display: block;
+  }
+}
+
+// كلاسات مساعدة للشاشات الصغيرة
+@media (max-width: 992px) {
+  .mobile-only {
+    display: block !important;
+  }
+  .collapse-btn {
+    display: none !important;
+  }
+  .sidebar-header .close-btn {
+    display: block !important;
+  }
+}
+@media (min-width: 993px) {
+  .mobile-only {
+    display: none !important;
   }
 }

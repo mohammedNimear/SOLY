@@ -38,6 +38,19 @@
     align-items: center;
     gap: 20px;
 
+    logo-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.logo-image {
+  height: 40px;      // ارتفاع مناسب للشعار
+  width: auto;       // يحافظ على نسبة الأبعاد
+  display: block;
+  object-fit: contain;
+}
+
+
     @media (max-width: 768px) {
       gap: 12px;
     }
