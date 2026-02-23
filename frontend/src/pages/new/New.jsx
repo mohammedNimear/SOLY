@@ -15,25 +15,35 @@ const New = ({ inputs, title, apiEndpoint }) => {
   const hasStoreField = inputs.some((input) => input.id === "store");
   
   useEffect(() => {
+    if (hasStoreField) {
+
+  
     const fetchStores = async () => {
       try {
+        setLoading(true);
         // Fetch the list of stores to populate the store selection input
-        const res = await axios.get("/stores");
-        setStores(res.data);
+        const baseURL = process.env.REACT_APP_API_URL || "";
+        const res = await axios.get(baseURL + "/stores", {
+          withCredentials: true,
+        });
+        if(Array.isArray(res.data)) {
+          setStores(res.data);
+        } else {
+          console.error("Unexpected response format for stores:", res.data);
+          setStores([]);
+        }
       } catch (err) {
-        console.log("Bad Stores Fetch", err);
-        
+        console.error("Error fetching stores:", err);
+        setStores([]);
+      }finally {
+        setLoading(false);
       }
-      
-      
     };
-    if(hasStoreField) {
-      fetchStores();
-      console.log(hasStoreField)
-      
-    } 
+    fetchStores();
+  }
     
   }, [hasStoreField]);
+
   
   const handleChange = (e) => {
     setInfo((prev) => ({
@@ -71,7 +81,7 @@ const New = ({ inputs, title, apiEndpoint }) => {
             
             <form>
 
-              {Array.isArray(inputs) && inputs.map((input) => {
+              { inputs.map((input) => {
                 if (input?.id === "store") {
                   
                   return (
@@ -85,7 +95,7 @@ const New = ({ inputs, title, apiEndpoint }) => {
                         required
                       >
                         <option value="">اختر المخزن</option>
-                        {stores.map((store) => (
+                        {Array.isArray(stores) && stores.map((store) => (
                           <option key={store._id} value={store._id}>
                             {store.name}
                           </option>
