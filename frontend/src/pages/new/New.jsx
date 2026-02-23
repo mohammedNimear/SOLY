@@ -71,7 +71,7 @@ const New = ({ inputs, title, apiEndpoint }) => {
             
             <form>
 
-              {inputs?.map((input) => {
+              {Array.isArray(inputs) && inputs.map((input) => {
                 if (input?.id === "store") {
                   
                   return (
