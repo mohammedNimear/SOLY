@@ -13,17 +13,18 @@ import customersRoute from './routes/customers.js'
 import cookieParser from 'cookie-parser';
 
 const app = express();
-app.use(cors({
-  origin:[
+
+const corsOptions = {
+  origin: [
     'https://soly-trading.netlify.app',
-    'http://localhost:3000'
-  ],
-  credentials:true,
-}));
-app.use(express.json());
-dotenv.config();
-// using json in app
-app.use(express.json());
+    'http://localhost:3000'],
+    credentials: true,
+    optionsSuccessStatus: 200
+  };
+  app.use(cors(corsOptions));
+  // using json in app
+  app.use(express.json());
+  dotenv.config();
 
 // using cookieParser in app             <Route path="getByStock">
 

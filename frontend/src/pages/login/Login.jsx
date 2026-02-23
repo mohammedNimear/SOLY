@@ -36,14 +36,14 @@ const Login = () => {
       <div className="login-card">
         <div className="login-left">
           <img src={logo} alt="شعار المتجر" className="logo" />
-          <h2>مرحباً بعودتك</h2>
-          <p>سجل دخولك لإدارة متجرك بكل سهولة</p>
+          <h2>مرحباً . . .</h2>
+          <p>سجل دخولك و تمتع بالادارة </p>
         </div>
         <div className="login-right">
           <h1 className="login-title">تسجيل الدخول</h1>
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
-              <label>اسم المستخدم أو البريد الإلكتروني</label>
+              <label>اسم المستخدم </label>
               <input
                 type="text"
                 name="username"
