@@ -1,29 +1,50 @@
-import mongoose from "mongoose";
+// models/Store.js (التحديث)
+import mongoose from 'mongoose';
 
-const StoreSchema = new mongoose.Schema(
-  {
+const StoreSchema = new mongoose.Schema({
     name: {
-      type: String,
-      required: true,
-    },
-    location: {
-      type: String,
-    },
-    employers_number: {
-      type: Number,
-    },
-    products:
-      [{name:String,
-        quantity: Number}]
-    ,
-     desc: {
-      type: String,
-    },
-    manager: {
         type: String,
-    }
-  },
-  { timestamps: true }
-);
+        required: true
+    },
+    desc: {
+        type: String,
+        required: true
+    },
+    location: String,
+    employees: [{
+        employee: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Employee'
+        },
+        role: {
+            type: String,
+            enum: ['مدير', 'مشرف', 'عامل']
+        },
+        startDate: {
+            type: Date,
+            default: Date.now
+        }
+    }],
+    manager: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Employee'
+    },
+    products: [
+        {
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product',
+                required: true
+            },
+            quantity: {
+                type: Number,
+                default: 0,
+                min: 0
+            },
+        }
+    ]
+}, {
+    timestamps: true
+});
 
-export default mongoose.model("Store", StoreSchema);
+export default mongoose.model('Store', StoreSchema);

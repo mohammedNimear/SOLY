@@ -1,59 +1,113 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv'
-import connectDB from './db/connection.js'
-import authRoute from './routes/auth.js'
-import employersRoute from './routes/employers.js'
-import suppliersRoute from './routes/suppliers.js'
-import salesRoute from './routes/sales.js'
-import storesRoute from './routes/stores.js'
-import productsRoute from './routes/products.js'
-import destersRoute from './routes/dusters.js'
-import usersRoute from './routes/users.js'
-import customersRoute from './routes/customers.js'
+import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import http from 'http';
+import { Server } from 'socket.io';
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+// استيراد المكونات الداخلية
+import connectDB from './config/db.js';
+import router from './routes/index.js';
+
+// تحميل متغيرات البيئة
 dotenv.config();
-// using json in app
-app.use(express.json());
 
-// using cookieParser in app             <Route path="getByStock">
+// إنشاء تطبيق Express
+const app = express();
 
+// إعدادات CORS للسماح بالطلبات من الواجهة الأمامية
+const corsOptions = {
+    origin: [
+        'https://soly-trading.netlify.app',
+        'http://localhost:3000'
+    ],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+// Middlewares الأساسية
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 
-app.use("/api/auth", authRoute)
-app.use("/api/employers", employersRoute)
-app.use("/api/suppliers", suppliersRoute)
-app.use("/api/sales", salesRoute)
+// Logging Middleware (للتطوير)
+if (process.env.NODE_ENV === 'development') {
+    app.use((req, res, next) => {
+        console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+        next();
+    });
+}
 
-app.use("/api/stores", storesRoute)
-app.use("/api/stores/stocks", storesRoute)
+// استخدام المسارات
+app.use('/api', router);
 
-app.use("/api/products", productsRoute)
-
-app.use("/api/users", usersRoute)
-app.use("/api/customers", customersRoute)
-app.use("/api/customers/dusters", customersRoute)
-
-
-app.use((err, req, res, next) => {
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "something went wrong";
-  return res.status(errorStatus).json({
-    success: false,
-    error: errorStatus,
-    message: errorMessage,
-    stack: err.stack,
-  });
+// Health Check Endpoint
+app.get('/health', (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: 'الخادم يعمل بشكل طبيعي',
+        timestamp: new Date().toISOString()
+    });
 });
 
+// مسار تجريبي رئيسي
+app.get('/', (req, res) => {
+    res.send('🌐 Soly ERP API is running');
+});
 
+// معالج للمسارات غير الموجودة - ✅ التصحيح هنا
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: 'الرابط غير موجود'
+    });
+});
 
-const port = process.env.PORT || 3310;
-app.listen(port, ()=>{
-    connectDB(); 
-    console.log(`Server on http://localhost:${port}`)
-})
+// معالج الأخطاء العام
+app.use((err, req, res, next) => {
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || 'حدث خطأ غير متوقع';
+    
+    // تسجيل الخطأ في وضع التطوير
+    if (process.env.NODE_ENV === 'development') {
+        console.error('Error:', err.stack);
+    }
+    
+    return res.status(errorStatus).json({
+        success: false,
+        status: errorStatus,
+        message: errorMessage,
+        ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    });
+});
+
+// إعداد Socket.IO
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: [
+            'https://soly-trading.netlify.app',
+            'http://localhost:3000'
+        ],
+        credentials: true
+    }
+});
+
+// معالجة اتصالات Socket.IO
+io.on('connection', (socket) => {
+    console.log('📱 مستخدم متصل:', socket.id);
+    
+    socket.on('disconnect', () => {
+        console.log('🔌 مستخدم غير متصل:', socket.id);
+    });
+});
+
+// تشغيل الخادم
+const port = process.env.PORT || 8800;
+server.listen(port, () => {
+    connectDB();
+    console.log(`🚀 الخادم يعمل على المنفذ ${port}`);
+    console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+});
+
+export { io };

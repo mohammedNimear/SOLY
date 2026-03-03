@@ -1,39 +1,37 @@
-import mongoose from "mongoose";
+// models/Supplier.js
+import mongoose from 'mongoose';
 
-const SupplierSchema = new mongoose.Schema(
-  {
+const SupplierSchema = new mongoose.Schema({
     name: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
+        unique: true
     },
-    product_name: {
-      type: String,
-      required: true,
+    contactPerson: String,
+    phone: {
+        type: String,
+        required: true
     },
-      note: {
-      type: String,
-      required: true,
+    email: String,
+    address: String,
+    company: String,
+    taxNumber: String,
+    bankAccount: String,
+    creditLimit: {
+        type: Number,
+        default: 0
     },
-    employer: {
-      type: String,
-      required: true,
+    balance: {
+        type: Number,
+        default: 0
     },
-    quantity: {
-      type: Number,
-      required: true,
+    isActive: {
+        type: Boolean,
+        default: true
     },
-    cost: {
-      type: Number,
-    },
-    store: {
-      type: String,
-    },
-     note: {
-      type: String,
-    },
+    notes: String
+}, {
+    timestamps: true
+});
 
-  },
-  { timestamps: true }
-);
-
-export default mongoose.model("Supplier", SupplierSchema);
+export default mongoose.model('Supplier', SupplierSchema);

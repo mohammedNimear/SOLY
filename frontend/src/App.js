@@ -1,366 +1,108 @@
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./style/dark.scss";
-import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
-import { AuthContext } from "./context/AuthContext ";
-import { customerColumns, employerColumns, hotelColumns, productColumns, roomColumns, saleColumns, storeColumns, supplierColumns, destersColumns } from "./datatablesource";
-import NewHotel from "./pages/newHotel/NewHotel";
-import NewRoom from './pages/newRoom/NewRoom';
-import { customerInputs, empolyerInputs, productInputs, saleInputs, storeInputs, supplierInputs, typesInputs } from "./formSource";
-import DusterTable from "./components/dusterTable/Table";
-import StockTable from "./components/stockTable/Table";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { PublicRoute, ProtectedRoute } from './components/common/ProtectedRoute';
+import Login from './pages/login/Login';
+import Layout from './components/layout/Layout';
+import Dashboard from './pages/dashboard/Dashboard';
+import Sales from './pages/sales/Sales';
+import Products from './pages/products/Products';
+import Stores from './pages/stores/Stores';
+import StoreDetails from './pages/stores/StoreDetails';
+import StoreInventory from './pages/stores/StoreInventory';
+import Transfers from './pages/transfers/Transfers';
+import Customers from './pages/customers/Customers';
+import Invoices from './pages/invoices/Invoices';
+import CreateInvoice from './pages/invoices/CreateInvoice';
+import InvoiceDetails from './pages/invoices/InvoiceDetails';
+import ExpenseManagement from './pages/employees/ExpenseManagement';
+import Employees from './pages/employees/Emloyees';
+import Suppliers from './pages/supplies/Suppliers';
+import Supplies from './pages/supplies/Supplies';
 
 function App() {
-  const { darkMode } = useContext(DarkModeContext);
-
-  const ProtectedRoutes = ({ children }) => {
-    const { user } = useContext(AuthContext);
-    if (!user) {
-      return <Navigate to="/login" />;
-    }
-    return children;
-  };
-
   return (
-    <div className={darkMode ? "app dark" : "app"} >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/">
-            <Route path="login" element={<Login />} />
-            <Route
-              index
-              element={
-                <ProtectedRoutes>
-                  <Home />
-                </ProtectedRoutes>
-              }
-            />
-
-            {/* //* تفاصيل التصريف*/}
-
-            <Route path="getByDuster">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <DusterTable />
-                  </ProtectedRoutes>
-                }
-              />
-
-            </Route>
-
-            {/* //* تفاصيل الكمية الحرجة*/}
-
-            <Route path="getByCritical">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <StockTable />
-                  </ProtectedRoutes>
-                }
-              />
-              
-            </Route>
-
-            {/* //*employers الموظفين*/}
-
-            <Route path="employers">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={employerColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":employerId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={empolyerInputs} title="Add New Employer" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-
-            {/* //*supplier الموردين*/}
-
-            <Route path="suppliers">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={supplierColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":supplierId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={supplierInputs} title="Add New Supplier" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-
-            {/* //*Sales المبيعات*/}
-
-            <Route path="sales">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={saleColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":saleId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={saleInputs} title="Add New Sale Move" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-            {/* //*Store المخازن*/}
-
-            <Route path="stores">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={storeColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":storeId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={storeInputs} title="Add New Store" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-            {/* //*Customers العملاء */}
-
-            <Route path="customers">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={customerColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":customerId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={customerInputs} title="Add New Customer" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-
-            {/* //*User */}
-
-            {/* <Route path="users">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={userColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":userId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={userInputs} title="Add New User" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route> */}
-
-
-            {/* //*desterbution التصريف*/}
-
-
-            <Route path="desters">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={destersColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":desterId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={typesInputs} title="Add New Desterbuter" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-
-            {/* //*products المنتجات*/}
-
-            <Route path="products">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={productColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":productId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <New inputs={productInputs} title="Add New Products" />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-
-
-
-
-
-            <Route path="hotels">
-              <Route
-                index
-                element={
-                  <ProtectedRoutes>
-                    <List columns={hotelColumns} />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path=":hotelId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <NewHotel />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-            <Route path="rooms">
-              <Route index element={<List columns={roomColumns} />} />
-              <Route
-                path=":roomId"
-                element={
-                  <ProtectedRoutes>
-                    <Single />
-                  </ProtectedRoutes>
-                }
-              />
-
-
-              <Route
-                path="new"
-                element={
-                  <ProtectedRoutes>
-                    <NewRoom />
-                  </ProtectedRoutes>
-                }
-              />
-            </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <div className="h-full w-full overflow-hidden">
+      <Toaster 
+        position="top-left"
+        reverseOrder={false}
+        gutter={8}
+        toastOptions={{
+          duration: 4000,
+          style: {
+            direction: 'rtl',
+            textAlign: 'right',
+            fontFamily: 'inherit',
+            fontSize: '14px',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+          success: {
+            icon: '✅',
+            style: {
+              backgroundColor: '#f0fdf4',
+              color: '#166534',
+              border: '1px solid #bbf7d0',
+            },
+          },
+          error: {
+            icon: '❌',
+            style: {
+              backgroundColor: '#fef2f2',
+              color: '#b91c1c',
+              border: '1px solid #fecaca',
+            },
+          },
+          loading: {
+            icon: '⏳',
+            style: {
+              backgroundColor: '#eff6ff',
+              color: '#1d4ed8',
+              border: '1px solid #bfdbfe',
+            },
+          },
+        }}
+      />
+      
+      <Routes>
+        {/* المسارات العامة */}
+        <Route 
+          path="/login" 
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          } 
+        />
+        
+        {/* المسارات المحمية */}
+        <Route 
+          path="/" 
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="sales" element={<Sales />} />
+          <Route path="products" element={<Products />} />
+          <Route path="stores" element={<Stores />} />
+          <Route path="stores/:id" element={<StoreDetails />} />
+          <Route path="inventory" element={<StoreInventory />} />
+          <Route path="transfers" element={<Transfers />} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="invoices" element={<Invoices />} />
+          <Route path="invoices/create" element={<CreateInvoice />} />
+          <Route path="invoices/:id" element={<InvoiceDetails />} />
+          <Route path="employees" element={<Employees />} />
+          <Route path="expenses" element={<ExpenseManagement />} />
+          <Route path="suppliers" element={<Suppliers />} />
+          <Route path="supplies" element={<Supplies />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

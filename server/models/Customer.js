@@ -1,45 +1,39 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const CustomerSchema = new mongoose.Schema(
-  {
+const customerSchema = new mongoose.Schema({
     name: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
     },
-    sales: {
-      type: String,
+    type: {
+        type: String,
+        enum: ['فرد', 'شركة'],
+        required: true
     },
-      total: {
-      type: Number,
-      default: 0,
+    contactPerson: String,
+    phone: {
+        type: String,
+        required: true
     },
-     payed: {
-      type: Number,
-      default: 0,
+    email: String,
+    address: String,
+    company: String,
+    taxNumber: String,
+    creditLimit: {
+        type: Number,
+        default: 0
     },
-      pay_time: {
-      type: Date,
+    balance: {
+        type: Number,
+        default: 0
     },
-      rest_money: {
-      type: Number,
-      default: 0,
+    isActive: {
+        type: Boolean,
+        default: true
     },
-     note: {
-      type: String,
-      default: "لا يوجد مدفوعات",
-      placeholder:" الاشعار و تاريخه"
-    },
-    payment_metod: {
-      type: String,
-    },
-      duster: {
-    type: Boolean,
-    default: false,
-  },
+    notes: String
+}, {
+    timestamps: true
+});
 
-  
-  },
-  { timestamps: true }
-);
-
-export default mongoose.model("Customer", CustomerSchema);
+export default mongoose.model('Customer', customerSchema);
